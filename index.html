@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SkillTrack helps you organize learning goals, manage daily tasks, and track your progress.">
+  <title>SkillTrack — Learning Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="SkillTrack home">
+        <span class="brand-mark">S</span><span>skill<span class="brand-light">track</span></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <a class="nav-link active" href="#overview"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-link" href="#goals"><span class="nav-icon">◎</span> My goals</a>
+        <a class="nav-link" href="#tasks"><span class="nav-icon">☑</span> Daily tasks</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-tip">
+          <div class="tip-icon">✦</div>
+          <strong>Small steps add up.</strong>
+          <p>Consistency is the secret to meaningful progress.</p>
+        </div>
+        <div class="profile-mini">
+          <div class="avatar">Y</div>
+          <div><strong>Your workspace</strong><span>Personal account</span></div>
+          <span class="more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong>Overview</strong></div>
+        <div class="top-actions">
+          <span class="today-label" id="todayLabel"></span>
+          <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme">☾</button>
+        </div>
+      </header>
+
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow">YOUR PERSONAL LEARNING SPACE</p>
+          <h1>Good to see you <span class="wave">✦</span></h1>
+          <p class="muted">Make today count. Every little bit of progress matters.</p>
+        </div>
+        <button class="primary-btn" id="quickAddBtn"><span>＋</span> Add a goal</button>
+      </section>
+
+      <section class="stats-grid" aria-label="Learning statistics">
+        <article class="stat-card">
+          <div class="stat-top"><span>Total goals</span><span class="stat-icon purple">◎</span></div>
+          <div class="stat-number" id="totalGoals">0</div>
+          <div class="stat-foot">Goals you're working toward</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Tasks completed</span><span class="stat-icon green">✓</span></div>
+          <div class="stat-number" id="completedTasks">0</div>
+          <div class="stat-foot">A win worth celebrating</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Tasks remaining</span><span class="stat-icon orange">◷</span></div>
+          <div class="stat-number" id="remainingTasks">0</div>
+          <div class="stat-foot">One step at a time</div>
+        </article>
+        <article class="stat-card highlight-stat">
+          <div class="stat-top"><span>Overall progress</span><span class="stat-icon blue">↗</span></div>
+          <div class="stat-number"><span id="overallProgress">0</span><small>%</small></div>
+          <div class="mini-progress"><span id="overallBar"></span></div>
+        </article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel goals-panel" id="goals">
+          <div class="panel-heading">
+            <div><p class="eyebrow">KEEP MOVING FORWARD</p><h2>Your learning goals</h2></div>
+            <button class="text-btn" id="allGoalsBtn">＋ New goal</button>
+          </div>
+          <div class="goal-list" id="goalList"></div>
+        </section>
+
+        <section class="panel focus-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">STAY CONSISTENT</p><h2>Daily focus</h2></div>
+            <span class="date-pill" id="datePill">Today</span>
+          </div>
+          <div class="focus-ring-wrap">
+            <div class="focus-ring" id="focusRing"><div><strong id="focusPercent">0%</strong><span>completed</span></div></div>
+          </div>
+          <p class="focus-caption" id="focusCaption">Start with one small task.</p>
+          <div class="focus-legend"><span><i class="dot done-dot"></i> Completed</span><span><i class="dot todo-dot"></i> Remaining</span></div>
+        </section>
+      </div>
+
+      <section class="panel tasks-panel" id="tasks">
+        <div class="panel-heading task-heading">
+          <div><p class="eyebrow">PLAN YOUR DAY</p><h2>Daily tasks</h2></div>
+          <div class="task-controls">
+            <select id="taskFilter" aria-label="Filter tasks">
+              <option value="all">All tasks</option><option value="active">In progress</option><option value="completed">Completed</option>
+            </select>
+            <button class="primary-btn small-btn" id="addTaskBtn">＋ Add task</button>
+          </div>
+        </div>
+        <form class="task-entry" id="taskForm">
+          <input id="taskInput" type="text" maxlength="90" placeholder="What would you like to get done?" autocomplete="off" required>
+          <button class="primary-btn small-btn" type="submit">Add task</button>
+        </form>
+        <div class="task-list" id="taskList"></div>
+        <div class="task-footer"><span id="taskSummary">0 tasks</span><button class="clear-btn" id="clearCompletedBtn">Clear completed</button></div>
+      </section>
+      <footer class="footer">Made with focus & curiosity <span>✦</span> <span class="footer-right">SkillTrack · Personal productivity</span></footer>
+    </main>
+  </div>
+
+  <dialog id="goalDialog" class="modal">
+    <form id="goalForm" method="dialog">
+      <div class="modal-heading"><div><p class="eyebrow">BUILD YOUR FUTURE</p><h2 id="goalModalTitle">Create a learning goal</h2></div><button type="button" class="close-btn" id="closeGoalDialog" aria-label="Close">×</button></div>
+      <label for="goalName">Goal name</label><input id="goalName" maxlength="60" placeholder="e.g. Learn JavaScript" required>
+      <label for="goalCategory">Category</label><select id="goalCategory"><option>Development</option><option>Design</option><option>Career</option><option>Personal growth</option><option>Other</option></select>
+      <label for="goalProgress">Current progress <span id="progressValue">0%</span></label><input id="goalProgress" type="range" min="0" max="100" value="0">
+      <div class="modal-actions"><button type="button" class="secondary-btn" id="cancelGoal">Cancel</button><button type="submit" class="primary-btn">Save goal</button></div>
+    </form>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
